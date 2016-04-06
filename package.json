@@ -5,8 +5,14 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "deep-equal": "^1.0.1",
+    "invariant": "^2.2.1",
     "meteor-node-stubs": "~0.2.0",
+    "query-string": "^4.1.0",
     "react": "^0.14.8",
-    "react-dom": "^0.14.8"
+    "react-dom": "^0.14.8",
+    "react-router": "^2.0.1",
+    "reactionic": "^0.1.12",
+    "warning": "^2.1.0"
   }
 }

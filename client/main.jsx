@@ -1,9 +1,29 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
+import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
 
 import App from '../imports/ui/App';
+import Test from '../imports/ui/Test';
+
+class RouteContainer extends React.Component {
+    render() {
+        return(
+            <div>
+                {this.props.children}
+            </div>
+        )
+    }
+}
 
 Meteor.startup(() => {
-    render(<App />, document.getElementById('render-target'));
-})
+    render((
+        <Router history={browserHistory}>
+            <Route path="/" component={RouteContainer}>
+                <IndexRoute component={App}/>
+                <Route path="test" component={Test} />
+            </Route>
+        </Router>
+    ), document.getElementById('render-target'));
+    // render(<Main />, document.getElementById('render-target'));
+});
