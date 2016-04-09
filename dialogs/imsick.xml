@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog xsi:noNamespaceSchemaLocation="WatsonDialogDocument_1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <flow>
+        <folder label="Main">
+            <output>
+                <prompt selectionType="RANDOM">
+                    <item>Hello, I'm Bemax, your personal healthcare companion.</item>
+                </prompt>
+                <goto ref="getUserInput_2449614"/>
+            </output>
+            <getUserInput id="getUserInput_2449614">
+                <search ref="folder_imsick_001"/>
+                <default>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>I am sorry, I did not understand your question. Please try asking another one.</item>
+                        </prompt>
+                    </output>
+                </default>
+            </getUserInput>
+        </folder>
+        <folder label="Library">
+          <folder label="Live Content" id="folder_imsick_001">
+            <input>
+              <grammar>
+                <item>I'm Sick</item>
+                <item>$ I'm Sick</item>
+                <item>I don't feel good</item>
+                <item>$ I don't feel good</item>
+              </grammar>
+              <output>
+                <prompt selectionType="RANDOM">
+                  <item>That's not good, let's get you some help. What type of symptoms do you have?</item>
+                </prompt>
+                <getUserInput>
+                <input>
+                  <grammar>
+                    <item>Aches and Pains</item>
+                    <item>Fever</item>
+                    <item>Cold Symptoms</item>
+                    <item>Stomach Issues</item>
+                  </grammar>
+                  <output>
+                    <prompt selectionType="RANDOM">
+                      <item>I'm sorry you feel that way. Let's try to narrow down what is wrong with you. /n Do you have a fever?</item>
+                    </prompt>
+                    <getUserInput>
+                      <input>
+                        <grammar>
+                          <item>Yes</item>
+                        </grammar>
+                        <output>
+                          <prompt selectionType="RANDOM">
+                            <item>That's not good :( \n You may have the flu or another serious respitory illness \n I would go see a doctor right away</item>
+                          </prompt>
+                        </output>
+                      </input>
+                      <input>
+                        <grammar>
+                          <item>No</item>
+                        </grammar>
+                        <output>
+                          <prompt selectionType="RANDOM">
+                            <item>You probably just have the common cold \n I would recommend taking some Clariton-D or other Pseudoephedrine product. \n It will help with the decongestion and hopefully let you get some much needed rest. \n Don't forget to drink your fluids!</item>
+                          </prompt>
+                        </output>
+                      </input>
+                    </getUserInput>
+                  </output>
+                </input>
+              </getUserInput>
+              </output>
+            </input>
+          </folder>
+        </folder>
+    </flow>
+    <constants>
+        <var_folder name="Home"/>
+    </constants>
+    <variables>
+        <var_folder name="Home"/>
+    </variables>
+    <settings>
+        <setting name="USERIDNUM" type="USER">69745</setting>
+        <setting name="EMAIL" type="USER">mwacho@us.ibm.com</setting>
+        <setting name="PASSWORD" type="USER">mct:6c43efcf28ac1250c656a15e26b28e0</setting>
+        <setting name="FIRSTNAME" type="USER">Matt</setting>
+        <setting name="LASTNAME" type="USER">Wachowiak</setting>
+        <setting name="COUNTRY" type="USER">US</setting>
+        <setting name="STATE" type="USER"></setting>
+        <setting name="CITY" type="USER">New York</setting>
+        <setting name="BDAY" type="USER">1</setting>
+        <setting name="BMONTH" type="USER">1</setting>
+        <setting name="BYEAR" type="USER">2001</setting>
+        <setting name="SEX" type="USER">Male</setting>
+        <setting name="DISPLAYNAME" type="USER">Matthew</setting>
+        <setting name="PROVIDESECURITYPASSWORD" type="USER">false</setting>
+        <setting name="SECURITYPASSWORD" type="USER"></setting>
+        <setting name="SHOWPERSPROFILE" type="USER">false</setting>
+        <setting name="USETYPE" type="USER">0</setting>
+        <setting name="DATEJOINED" type="USER">2014-10-06 15:34:05.0</setting>
+        <setting name="LASTLOGIN" type="USER">2015-04-01 17:31:28.0</setting>
+        <setting name="LOGINCOUNT" type="USER">7</setting>
+        <setting name="CREDIT" type="USER">-100</setting>
+        <setting name="CONVCOUNT" type="USER">55</setting>
+        <setting name="PERSONALITYTYPEID" type="USER">6</setting>
+        <setting name="SHOWSENDMESSAGE" type="USER">true</setting>
+        <setting name="ACTIVATED" type="USER">true</setting>
+        <setting name="MESSENGEREMAIL" type="USER"></setting>
+        <setting name="MESSENGERPASSWORD" type="USER"></setting>
+        <setting name="SENDCHATEMAIL" type="USER">true</setting>
+        <setting name="SENDFAVEMAIL" type="USER">tre</setting>
+        <setting name="CACHE" type="USER">false</setting>
+        <setting name="CLASSTYPE" type="USER">3</setting>
+        <setting name="AUTOLEARN" type="USER">false</setting>
+        <setting name="LANGUAGE" type="USER">EN</setting>
+        <setting name="RESPONSETIME" type="USER">0</setting>
+        <setting name="MAXAUTOLEARNITEMS" type="USER">0</setting>
+        <setting name="NUMAUTOSETRELATED" type="USER">0</setting>
+        <setting name="TIMEZONEID" type="USER">Australia/Sydney</setting>
+        <setting name="AUTOSETRELATEDNODEID" type="USER">0</setting>
+        <setting name="RETURNTOCHATNODEID" type="USER">0</setting>
+        <setting name="INPUTMASKTYPE" type="USER">0</setting>
+        <setting name="NUMLOGINATTEMPTS" type="USER">0</setting>
+        <setting name="CONCEPTMATCHING" type="USER">0</setting>
+    </settings>
+</dialog>

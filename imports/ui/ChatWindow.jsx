@@ -1,6 +1,14 @@
 import React, { Component, PropTypes } from 'react';
+import { Meteor } from 'meteor/meteor';
 
 export default class ChatWindow extends Component {
+
+    componentDidMount() {
+        fetch('/api/watson')
+            .then(r => r.json())
+            .then(r => console.log(r));
+    }
+
     render() {
         const { messages } = this.props;
         console.log('Chat window');
