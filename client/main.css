@@ -1,5 +1,14 @@
 /* CSS declarations go here */
 
+.leaflet-control-container{
+    min-height:500px !important;
+    min-width:500px !important;
+}
+
+div#render-target{
+    min-height:500px !important;
+    min-width:500px !important;
+}
 
 .talkbubble-user {
     position: relative;
@@ -56,6 +65,13 @@
     color: white !important;
 }
 
+#login-buttons .login-link-and-dropdown-list {
+    color: white;
+}
+
+#login-buttons .login-link-and-dropdown-list > a {
+    color: white;
+}
 /*.talkbubble:before {*/
     /*content:"";*/
     /*position: absolute;*/
