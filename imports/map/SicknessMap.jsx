@@ -3,19 +3,19 @@ import { Map, Marker, Popup, TileLayer, setIconDefaultImagePath} from 'react-lea
 import {Meteor} from 'meteor/meteor';
 import {Reports} from '../api/Reports';
 
-var interval = null;
+var intervalId;
 export default class SicknessMap extends Component {
 
     constructor() {
 
-      super();
-      this.state = {
-          //markerData: [],
-          zoom: 18,
-          current_location: {lat: 40.803797, lng: -77.865486},
-          defaultMarkerData: [{lat: 40.803554, lng: -77.865521, symptoms:["Diahrea","Itchy dick","Bloody pee"]},
-                              {lat: 40.803952, lng: -77.864703, symptoms:["Diahrea","Itchy dick","Bloody pee"]},
-                              {lat: 40.803942, lng: -77.865191, symptoms:["Diahrea","Itchy dick","Bloody pee"]}]};
+        super();
+        this.state = {
+            //markerData: [],
+            zoom: 18,
+            current_location: {lat: 40.803797, lng: -77.865486},
+            defaultMarkerData: [{lat: 40.803554, lng: -77.865521, symptoms:["Diahrea","Itchy dick","Bloody pee"]},
+                {lat: 40.803952, lng: -77.864703, symptoms:["Diahrea","Itchy dick","Bloody pee"]},
+                {lat: 40.803942, lng: -77.865191, symptoms:["Diahrea","Itchy dick","Bloody pee"]}]};
     }
 
     componentDidMount() {
@@ -27,7 +27,7 @@ export default class SicknessMap extends Component {
         //
         // 'current_location' should be the current user's current location, we can use this to center on their location to show them
         // their surroundings
-        Meteor.setInterval(() => {
+        intervalId = Meteor.setInterval(() => {
             console.log('inverval');
             this.setState({
                 markerData: Reports.find({}).fetch()
@@ -45,43 +45,69 @@ export default class SicknessMap extends Component {
 
     render() {
         const position = [this.state.current_location.lat, this.state.current_location.lng];
-        var temp = [];
-      
+        var temp;
+
         if(this.state.markerData || this.state.defaultMarkerData){
-          var data = [];
-          if(this.state.markerData){
-            data = this.state.markerData;
-          }else{
-            data = this.state.defaultMarkerData;
-          }
-          
-          for(var i = 0; i < data.length; i++)
-            {
-                var current = data[i];
-                var symptomClass = "";
-                var symptomsSentence = "";
+            var data;
+            var isReportData = false;
+            if(this.state.markerData){
+                data = this.state.markerData;
+                Meteor.clearInterval(intervalId);
+                isReportData = true;
+            }else{
+                data = this.state.defaultMarkerData;
+            }
 
-                // Make a classname based on symptoms so that all
-                for(var j = 0; j < current.symptoms.length-1; j++)
-                {
-                    symptomClass += current.symptoms[j] + "-";
-                    symptomsSentence += current.symptoms[j] + ", ";
+            temp = data.map((m, i) => {
+                if(isReportData) {
+                    var symptoms = m.symptoms.map(k => {
+                        return k.text;
+                    });
+                    return (
+                        <Marker key={i} className={symptoms.join('-')} position={[m.lat,m.lng]}>
+                            <Popup>
+                                <span>{symptoms.join(', ')}</span>
+                            </Popup>
+                        </Marker>
+                    );
+                    console.log(symptoms.join(', '));
                 }
-
-                // Add the last symptom to each without a trailing character
-                symptomClass+=current.symptoms[current.symptoms.length-1];
-                symptomsSentence += current.symptoms[current.symptoms.length-1];
-
-                temp.push((
-                    <Marker key={i} className={symptomClass} position={[current.lat,current.lng]}>
+                return (
+                    <Marker key={i} className={m.symptoms.join('-')} position={[m.lat,m.lng]}>
                         <Popup>
-                            <span>{symptomsSentence}</span>
+                            <span>{m.symptoms.join(', ')}</span>
                         </Popup>
                     </Marker>
-                ));
-            }
-          
-          return (
+                );
+            });
+
+            // for(var i = 0; i < data.length; i++)
+            // {
+            //     var current = data[i];
+            //     var symptomClass = "";
+            //     var symptomsSentence = "";
+            //
+            //     // Make a classname based on symptoms so that all
+            //     for(var j = 0; j < current.symptoms.length-1; j++)
+            //     {
+            //         symptomClass += current.symptoms[j] + "-";
+            //         symptomsSentence += current.symptoms[j] + ", ";
+            //     }
+            //
+            //     // Add the last symptom to each without a trailing character
+            //     symptomClass+=current.symptoms[current.symptoms.length-1];
+            //     symptomsSentence += current.symptoms[current.symptoms.length-1];
+            //
+            //     temp.push((
+            //         <Marker key={i} className={symptomClass} position={[current.lat,current.lng]}>
+            //             <Popup>
+            //                 <span>{symptomsSentence}</span>
+            //             </Popup>
+            //         </Marker>
+            //     ));
+            // }
+
+            return (
                 <Map center={position} zoom={this.state.zoom}>
                     <TileLayer
                         attribution='<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>'
