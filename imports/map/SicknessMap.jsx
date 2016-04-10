@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import { Map, Marker, Popup, TileLayer, setIconDefaultImagePath} from 'react-leaflet';
 
 export default class SicknessMap extends Component {
 
     constructor() {
-        super();
-
-        this.state = {
-            //markerData: [],
-            zoom: 18,
-            current_location: {lat: 40.803797, lng: -77.865486},
-            //defaultMarkerData: [{lat: 40.803797, lng: -77.865486, symptoms:[{},{},{}]},{}]}]
-        };
+      super();
+//      setIconDefaultImagePath('/assets/circle-red.png');
+      this.state = {
+          //markerData: [],
+          zoom: 18,
+          current_location: {lat: 40.803797, lng: -77.865486},
+          defaultMarkerData: [{lat: 40.803554, lng: -77.865521, symptoms:["Diahrea","Itchy dick","Bloody pee"]},
+                              {lat: 40.803952, lng: -77.864703, symptoms:["Diahrea","Itchy dick","Bloody pee"]},
+                              {lat: 40.803942, lng: -77.865191, symptoms:["Diahrea","Itchy dick","Bloody pee"]}]};
+        
     }
 
     componentDidMount() {
@@ -36,10 +38,17 @@ export default class SicknessMap extends Component {
     render() {
         const position = [this.state.current_location.lat, this.state.current_location.lng];
         var temp = [];
-        if(this.state.markerData){
-            for(var i = 0; i < this.props.markerData.length; i++)
+        if(this.state.markerData || this.state.defaultMarkerData){
+          var data = [];
+          if(this.state.markerData){
+            data = this.state.markerData;
+          }else{
+            data = this.state.defaultMarkerData;
+          }
+          
+          for(var i = 0; i < data.length; i++)
             {
-                var current = this.props.markerData[i];
+                var current = data[i];
                 var symptomClass = "";
                 var symptomsSentence = "";
 
@@ -47,7 +56,7 @@ export default class SicknessMap extends Component {
                 for(var j = 0; j < current.symptoms.length-1; j++)
                 {
                     symptomClass += current.symptoms[j] + "-";
-                    symptomsSentence += current.symptoms[j] + "<br/>";
+                    symptomsSentence += current.symptoms[j] + ", ";
                 }
 
                 // Add the last symptom to each without a trailing character
@@ -55,15 +64,15 @@ export default class SicknessMap extends Component {
                 symptomsSentence += current.symptoms[current.symptoms.length-1];
 
                 temp.push((
-                    <Marker className={symptomClass} position={[current.lat,current.long]}>
+                    <Marker key={i} className={symptomClass} position={[current.lat,current.lng]}>
                         <Popup>
                             <span>{symptomsSentence}</span>
                         </Popup>
                     </Marker>
                 ));
             }
-
-            return (
+          
+          return (
                 <Map center={position} zoom={this.state.zoom}>
                     <TileLayer
                         attribution='<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>'
