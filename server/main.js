@@ -17,16 +17,6 @@ const symptoms = ['Aches and Pains',
 
 Meteor.startup(() => {
   // // code to run on server at startup
-  //   for(var i = 0; i < 50; i++) {
-  //       var newReport = {};
-  //       const randomCord = Math.floor(Math.random() * (coords.length - 1 + 1)) + 0;
-  //       const randomSymptom = Math.floor(Math.random() * (symptoms.length -1 + 1)) + 0;
-  //       newReport.lat = coords[randomCord][0];
-  //       newReport.lng = coords[randomCord][1];
-  //       newReport.symptoms = [];
-  //       newReport.symptoms.push(symptoms[randomSymptom]);
-  //       Reports.insert(newReport);
-  //   }
   
   // Sicknesses
   var sepsis = ["Fever","Coughing","Stomach Ache"];
@@ -75,5 +65,5 @@ Meteor.startup(() => {
   Reports.insert({lat:40.803499, lng:-77.865522, symptoms:cancer});
   //40.803555, -77.865615
   Reports.insert({lat:40.803555, lng:-77.865615, symptoms:dead});
-  
+    
 });
