@@ -1,39 +1,29 @@
-/*
- * Base Google Map example
- */
-import React, {PropTypes, Component} from 'react';
-import shouldPureComponentUpdate from 'react-pure-render/function';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
-import GoogleMap from 'google-map-react';
-import MyGreatPlace from './MyGreatPlace.jsx';
+const position = [51.505, -0.09];
+var map = (<Map center={position} zoom={13}>
+  <TileLayer
+    url="http://api.tiles.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic3RvY2tsZXR0IiwiYSI6ImNpbXRodjdkdTAyMG12cWx1bWV3ems4ODMifQ.vQ1RYaU-1rFto4FwZoRPJw"
+    attribution='<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>'
+  />
+  <Marker position={position}>
+    <Popup>
+      <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
+    </Popup>
+  </Marker>
+</Map>
+          );
+
+//render(map, $(document).ready(function(){document.getElementById('render-target')}));
 
 export default class SicknessMap extends Component {
-
-  //shouldComponentUpdate = shouldPureComponentUpdate;
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-       <GoogleMap
-        bootstrapURLKeys={{key:'AIzaSyAUzYP9lKQJIa2T9F_Auc-Mb3wP0Eowdgo'}} // set if you need stats etc ...
-        center={this.props.center}
-        zoom={this.props.zoom}>
-        <MyGreatPlace lat={59.955413} lng={30.337844} text={'A'} /* Kreyser Avrora */ />
-        <MyGreatPlace {...this.props.greatPlaceCoords} text={'B'} /* road circle */ />
-      </GoogleMap>
-    );
-  }
+    render() {
+        return (
+          <div>
+          {map}
+          </div>
+          );
+    }
 }
-
-SicknessMap.propTypes = { 
-  center: PropTypes.array,
-  zoom: PropTypes.number,
-  greatPlaceCoords: PropTypes.any};
-
-SicknessMap.defaultProps = { 
-  center: [59.938043, 30.337157],
-  zoom: 9,
-  greatPlaceCoords: {lat: 59.724465, lng: 30.080121}};

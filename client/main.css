@@ -6,6 +6,16 @@ body {
     font-size: 16px;
 }
 
+.leaflet-control-container{
+  min-height:500px !important;
+  min-width:500px !important;
+}
+
+div#render-target{
+  min-height:500px !important;
+  min-width:500px !important;
+}
+
 .talkbubble-user {
     position: relative;
     /*width: 300px;*/
