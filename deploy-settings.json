@@ -1,0 +1,8 @@
+{
+  "galaxy.meteor.com": {
+    "env": {
+      "ROOT_URL": "http://imsick.marze.io",
+      "MONGO_URL": "mongodb://max:somewhere12A@ds019940.mlab.com:19940/imsick"
+    }
+  }
+}

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-
+import { HTTP } from 'meteor/http';
 import ChatWindow from './ChatWindow';
+
+const APIURL = 'https://imsick-watson-yxxuadnzzz.now.sh/';
 
 export default class Messenger extends Component {
 
@@ -17,36 +19,35 @@ export default class Messenger extends Component {
     }
 
     componentDidMount() {
-        fetch('/api/converse/imsick')
-            .then(r => r.json())
-            .then(r => {
-                this.state.messages.push({isUser: false, text: r.response[0]});
-                // r.userResponses.forEach(m => this.state.responses.push(m));
-                this.setState({responses: r.userResponses, updates: this.state.updates + 1, conversationId: r.conversation_id});
-            })
+        HTTP.call("GET", APIURL + "converse/imsick", (err, result) => {
+            console.log(JSON.parse(result.content));
+            const r = JSON.parse(result.content);
+            this.state.messages.push({isUser: false, text: r.response[0]});
+            // r.userResponses.forEach(m => this.state.responses.push(m));
+            this.setState({responses: r.userResponses, updates: this.state.updates + 1, conversationId: r.conversation_id});
+        });
     }
 
     converseWithServer(input) {
-        fetch('/api/converse/imsick', {
-            method: 'POST',
+        HTTP.post(APIURL + "converse/imsick", {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
+            content: JSON.stringify({
                 conversationId: this.state.conversationId,
                 input: input
             })
-        }).then(r => r.json())
-            .then(r => {
-                var watsonMessages = r.response[0].split('/n');
-                if(watsonMessages.length === 1)
-                    watsonMessages = r.response[0].split('\\n');
-                watsonMessages.forEach(m => this.state.messages.push({isUser: false, text: m}));
-                // this.state.messages.push({isUser: false, text: r.response[0]});
-                var userResponses = r.userResponses !== null ? r.userResponses : null;
-                this.setState({responses: userResponses, updates: this.state.updates + 1, conversationId: r.conversation_id});
-            });
+        },(err, result) => {
+            const r = JSON.parse(result.content);
+            var watsonMessages = r.response[0].split('/n');
+            if(watsonMessages.length === 1)
+                watsonMessages = r.response[0].split('\\n');
+            watsonMessages.forEach(m => this.state.messages.push({isUser: false, text: m}));
+            // this.state.messages.push({isUser: false, text: r.response[0]});
+            var userResponses = r.userResponses !== null ? r.userResponses : null;
+            this.setState({responses: userResponses, updates: this.state.updates + 1, conversationId: r.conversation_id});
+        });
     }
 
     handleOptionClick(text) {

@@ -4,9 +4,7 @@ import { Meteor } from 'meteor/meteor';
 export default class ChatWindow extends Component {
 
     componentDidMount() {
-        fetch('/api/watson')
-            .then(r => r.json())
-            .then(r => console.log(r));
+
     }
 
     render() {
