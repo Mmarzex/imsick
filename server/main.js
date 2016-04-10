@@ -19,14 +19,30 @@ const symptoms = ['Aches and Pains',
 
 Meteor.startup(() => {
   // // code to run on server at startup
-  //   for(var i = 0; i < 50; i++) {
-  //       var newReport = {};
-  //       const randomCord = Math.floor(Math.random() * (coords.length - 1 + 1)) + 0;
-  //       const randomSymptom = Math.floor(Math.random() * (symptoms.length -1 + 1)) + 0;
-  //       newReport.lat = coords[randomCord][0];
-  //       newReport.lng = coords[randomCord][1];
-  //       newReport.symptoms = [];
-  //       newReport.symptoms.push(symptoms[randomSymptom]);
-  //       Reports.insert(newReport);
-  //   }
+  //   var variance = 0.000099;
+    for(var i = 0; i < 200; i++) {
+        var newReport = {};
+        const randomCord = Math.floor(Math.random() * (coords.length - 1 + 1)) + 0;
+        var randomSec;
+        if(randomCord !== coords.length - 1) {
+            randomSec = randomCord + 1;
+        } else {
+            randomSec = randomCord - 1;
+        }
+
+        var variancelat = Math.random() / 1000;
+        var variancelng = Math.random() / 1000;
+
+        const randomSymptom = Math.floor(Math.random() * (symptoms.length -1 + 1)) + 0;
+        // var variance = {};
+        // variance.latV = Math.abs(coords[randomCord][0] - coords[randomSec][0]) / 2;
+        // variance.lngV = Math.abs(coords[randomCord][1] - coords[randomSec][1]) / 2;
+        newReport.lat = coords[randomCord][0] + variancelat;
+        newReport.lng = coords[randomCord][1] + variancelng;
+        newReport.symptoms = [];
+        newReport.symptoms.push(symptoms[randomSymptom]);
+        console.log(newReport);
+        Reports.insert(newReport);
+        // variance = variance / 2;
+    }
 });

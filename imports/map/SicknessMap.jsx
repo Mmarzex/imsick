@@ -53,7 +53,7 @@ export default class SicknessMap extends Component {
             if(this.state.markerData){
                 data = this.state.markerData;
                 Meteor.clearInterval(intervalId);
-                isReportData = true;
+                // isReportData = true;
             }else{
                 data = this.state.defaultMarkerData;
             }
