@@ -11,7 +11,7 @@ export default class Messenger extends Component {
         this.state = {
             messages: [],
             responses: [],
-            conversationId: null,
+            conversationId: undefined,
             updates: 0
         }
     }
@@ -39,8 +39,13 @@ export default class Messenger extends Component {
             })
         }).then(r => r.json())
             .then(r => {
-                this.state.messages.push({isUser: false, text: r.response[0]});
-                this.setState({responses: r.userResponses, updates: this.state.updates + 1, conversationId: r.conversation_id});
+                var watsonMessages = r.response[0].split('/n');
+                if(watsonMessages.length === 1)
+                    watsonMessages = r.response[0].split('\\n');
+                watsonMessages.forEach(m => this.state.messages.push({isUser: false, text: m}));
+                // this.state.messages.push({isUser: false, text: r.response[0]});
+                var userResponses = r.userResponses !== null ? r.userResponses : null;
+                this.setState({responses: userResponses, updates: this.state.updates + 1, conversationId: r.conversation_id});
             });
     }
 
@@ -49,15 +54,15 @@ export default class Messenger extends Component {
         const isUser = true;
         this.state.messages.push({isUser, text});
         console.log(this.state.messages);
-        this.setState({responses: null, updates: this.state.updates + 1});
+        this.setState({responses: undefined, updates: this.state.updates + 1});
         this.converseWithServer(text);
     }
 
     render() {
 
-        var options = this.state.responses === null ? [(<div></div>)] : this.state.responses.map((r, i) => {
+        var options = this.state.responses === undefined ? [(<div></div>)] : this.state.responses.map((r, i) => {
             return (
-                <div className="col-xs-6">
+                <div key={i} className="col-xs-6">
                     <button id="blah" type="submit"
                             style={MessengerStyles.option}
                             className="btn btn-default"
@@ -70,14 +75,14 @@ export default class Messenger extends Component {
             var temp = [];
             if(options.length <= 2) {
                 temp.push((
-                    <div style={MessengerStyles.responseRow} className="row">
+                    <div key={111} style={MessengerStyles.responseRow} className="row">
                         {options}
                     </div>
                 ));
             } else {
                 for(var i = 0; i < options.length; i += 2) {
                     temp.push((
-                        <div style={MessengerStyles.responseRow} className="row">
+                        <div key={i} style={MessengerStyles.responseRow} className="row">
                             {options[i]}
                             {options[i + 1]}
                         </div>
@@ -88,7 +93,7 @@ export default class Messenger extends Component {
         }
 
         return (
-            <div className="container">
+            <div key={223} className="container">
                 <ChatWindow messages={this.state.messages} />
                 {options}
             </div>
@@ -98,7 +103,7 @@ export default class Messenger extends Component {
 
 var MessengerStyles = {
     option: {
-        backgroundColor: 'lightblue'
+        backgroundColor: '#57DC60'
     },
     responseRow: {
         paddingTop: 10
