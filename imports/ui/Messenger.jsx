@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { HTTP } from 'meteor/http';
 import ChatWindow from './ChatWindow';
 
+import {Reports} from '../api/Reports';
+
 const APIURL = 'https://imsick-watson-yxxuadnzzz.now.sh/';
 
 export default class Messenger extends Component {
@@ -27,6 +29,7 @@ export default class Messenger extends Component {
             this.setState({responses: r.userResponses, updates: this.state.updates + 1, conversationId: r.conversation_id});
         });
         console.log(Geolocation.currentLocation());
+        console.log('reports', Reports.find({}).fetch());
     }
 
     converseWithServer(input) {
