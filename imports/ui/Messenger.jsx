@@ -26,6 +26,7 @@ export default class Messenger extends Component {
             // r.userResponses.forEach(m => this.state.responses.push(m));
             this.setState({responses: r.userResponses, updates: this.state.updates + 1, conversationId: r.conversation_id});
         });
+        console.log(Geolocation.currentLocation());
     }
 
     converseWithServer(input) {
@@ -60,7 +61,7 @@ export default class Messenger extends Component {
     }
 
     render() {
-
+        console.log(Geolocation.currentLocation());
         var options = this.state.responses === undefined ? [(<div></div>)] : this.state.responses.map((r, i) => {
             return (
                 <div key={i} className="col-xs-6">
