@@ -16,6 +16,8 @@ export default class SicknessMap extends Component {
             defaultMarkerData: [{lat: 40.803554, lng: -77.865521, symptoms:["Diahrea","Itchy dick","Bloody pee"]},
                 {lat: 40.803952, lng: -77.864703, symptoms:["Diahrea","Itchy dick","Bloody pee"]},
                 {lat: 40.803942, lng: -77.865191, symptoms:["Diahrea","Itchy dick","Bloody pee"]}]};
+      
+      setIconDefaultImagePath('http://i.imgur.com/Z97abFM.png');
     }
 
     componentDidMount() {
