@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Messenger from './Messenger';
+import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 export default class App extends Component {
 
