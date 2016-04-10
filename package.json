@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "deep-equal": "^1.0.1",
+    "faker": "^3.1.0",
     "invariant": "^2.2.1",
     "leaflet": "^0.7.7",
     "meteor-node-stubs": "~0.2.0",
