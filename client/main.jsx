@@ -5,6 +5,7 @@ import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
 
 import App from '../imports/ui/App';
 import Test from '../imports/ui/Test';
+import '../imports/startup/accounts-config.js';
 
 class RouteContainer extends React.Component {
     render() {

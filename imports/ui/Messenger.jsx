@@ -51,6 +51,11 @@ export default class Messenger extends Component {
             // this.state.messages.push({isUser: false, text: r.response[0]});
             var userResponses = r.userResponses !== null ? r.userResponses : null;
             this.setState({responses: userResponses, updates: this.state.updates + 1, conversationId: r.conversation_id});
+            if(userResponses === null || userResponses === undefined){
+                var symptom = this.state.messages[3];
+                var latLong = Geolocation.latLng();
+                Reports.insert({userid: Meteor.userId, symptoms: [symptom], lat: latLong.lat, long: latLong.lng});
+            }
         });
     }
 
