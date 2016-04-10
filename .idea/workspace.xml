@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26017c1c-8a51-4cba-b9af-25ab1b1d048c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/WatsonApi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/imsick.iml" afterPath="$PROJECT_DIR$/.idea/imsick.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/meteor_packages_auto_import_browser.xml" afterPath="$PROJECT_DIR$/.idea/libraries/meteor_packages_auto_import_browser.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/meteor_packages_auto_import_npm.xml" afterPath="$PROJECT_DIR$/.idea/libraries/meteor_packages_auto_import_npm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/packages" afterPath="$PROJECT_DIR$/.meteor/packages" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/versions" afterPath="$PROJECT_DIR$/.meteor/versions" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/ChatWindow.jsx" afterPath="$PROJECT_DIR$/imports/ui/ChatWindow.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/App.jsx" afterPath="$PROJECT_DIR$/imports/ui/App.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Messenger.jsx" afterPath="$PROJECT_DIR$/imports/ui/Messenger.jsx" />
     </list>
     <ignored path="imsick.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,14 +46,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Messenger.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Messenger.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/imports/ui/Messenger.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
+            <state relative-caret-position="990">
+              <caret line="66" column="11" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/App.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -88,24 +90,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WatsonApi.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WatsonApi.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/WatsonApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="903">
+            <state relative-caret-position="888">
               <caret line="104" column="72" selection-start-line="104" selection-start-column="72" selection-end-line="104" selection-end-column="72" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -119,17 +111,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/client/main.html" />
-        <option value="$PROJECT_DIR$/imports/ui/App.jsx" />
         <option value="$PROJECT_DIR$/client/main.css" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/imports/container/Main.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/utils/helpers.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/Test.jsx" />
         <option value="$PROJECT_DIR$/client/main.jsx" />
-        <option value="$PROJECT_DIR$/imports/ui/Messenger.jsx" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/imports/ui/ChatWindow.jsx" />
         <option value="$PROJECT_DIR$/server/WatsonApi.js" />
+        <option value="$PROJECT_DIR$/imports/ui/App.jsx" />
+        <option value="$PROJECT_DIR$/imports/ui/Messenger.jsx" />
       </list>
     </option>
   </component>
@@ -407,12 +399,12 @@
       <workItem from="1459800628494" duration="2862000" />
       <workItem from="1459813127667" duration="4916000" />
       <workItem from="1459878279133" duration="3295000" />
-      <workItem from="1460221512105" duration="5512000" />
+      <workItem from="1460221512105" duration="7411000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17501000" />
+    <option name="totallyTimeSpent" value="19400000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1148" extended-state="6" />
@@ -529,6 +521,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -618,20 +611,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/App.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -658,16 +642,6 @@
         <state relative-caret-position="-668">
           <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Messenger.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -705,12 +679,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/App.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/WatsonApi.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="903">
+        <state relative-caret-position="888">
           <caret line="104" column="72" selection-start-line="104" selection-start-column="72" selection-end-line="104" selection-end-column="72" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Messenger.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="66" column="11" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
