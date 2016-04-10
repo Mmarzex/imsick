@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import {Meteor} from 'meteor/meteor';
+import {Reports} from '../api/Reports';
 
+var interval = null;
 export default class SicknessMap extends Component {
 
     constructor() {
         super();
 
         this.state = {
-            //markerData: [],
+            markerData: [],
             zoom: 18,
             current_location: {lat: 40.803797, lng: -77.865486},
             //defaultMarkerData: [{lat: 40.803797, lng: -77.865486, symptoms:[{},{},{}]},{}]}]
@@ -24,7 +26,14 @@ export default class SicknessMap extends Component {
         //
         // 'current_location' should be the current user's current location, we can use this to center on their location to show them
         // their surroundings
+        Meteor.setInterval(() => {
+            console.log('inverval');
+            this.setState({
+                markerData: Reports.find({}).fetch()
+            });
+        }, 3000);
         this.setState({
+            // markerData: Reports.find({}).fetch(),
             //markerData: [],
             zoom: 18
         });
@@ -37,9 +46,14 @@ export default class SicknessMap extends Component {
         const position = [this.state.current_location.lat, this.state.current_location.lng];
         var temp = [];
         if(this.state.markerData){
-            for(var i = 0; i < this.props.markerData.length; i++)
+            console.log('reports', Reports.find({}).fetch());
+            if(Reports.find({}).fetch() !== []) {
+                Meteor.clearInterval(interval);
+            }
+            console.log(this.state.markerData);
+            for(var i = 0; i < this.state.markerData.length; i++)
             {
-                var current = this.props.markerData[i];
+                var current = this.state.markerData[i];
                 var symptomClass = "";
                 var symptomsSentence = "";
 
