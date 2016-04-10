@@ -5,7 +5,9 @@ import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
 
 import App from '../imports/ui/App';
 import Test from '../imports/ui/Test';
+import SicknessMap from '../imports/map/SicknessMap';
 import '../imports/startup/accounts-config.js';
+import AccountsUIWrapper from '../imports/ui/AccountsUIWrapper';
 
 class RouteContainer extends React.Component {
     render() {
@@ -30,9 +32,7 @@ class RouteContainer extends React.Component {
                                 <li><a href="#contact">Contact</a></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right imsick-nav">
-                                <li><a href="../navbar/">Default</a></li>
-                                <li className="active"><a href="./">Static top <span className="sr-only">(current)</span></a></li>
-                                <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+                                <li className="navbar-text"><AccountsUIWrapper /></li>
                             </ul>
                         </div>
                     </div>
@@ -49,6 +49,7 @@ Meteor.startup(() => {
             <Route path="/" component={RouteContainer}>
                 <IndexRoute component={App}/>
                 <Route path="test" component={Test} />
+                <Route path="maptest" component={SicknessMap} />
             </Route>
         </Router>
     ), document.getElementById('render-target'));
