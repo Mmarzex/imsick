@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import { Map, Marker, Popup, TileLayer, setIconDefaultImagePath} from 'react-leaflet';
+import {Meteor} from 'meteor/meteor';
+import {Reports} from '../api/Reports';
 
+var interval = null;
 export default class SicknessMap extends Component {
 
     constructor() {
+
       super();
-//      setIconDefaultImagePath('/assets/circle-red.png');
       this.state = {
           //markerData: [],
           zoom: 18,
@@ -14,7 +16,6 @@ export default class SicknessMap extends Component {
           defaultMarkerData: [{lat: 40.803554, lng: -77.865521, symptoms:["Diahrea","Itchy dick","Bloody pee"]},
                               {lat: 40.803952, lng: -77.864703, symptoms:["Diahrea","Itchy dick","Bloody pee"]},
                               {lat: 40.803942, lng: -77.865191, symptoms:["Diahrea","Itchy dick","Bloody pee"]}]};
-        
     }
 
     componentDidMount() {
@@ -26,7 +27,14 @@ export default class SicknessMap extends Component {
         //
         // 'current_location' should be the current user's current location, we can use this to center on their location to show them
         // their surroundings
+        Meteor.setInterval(() => {
+            console.log('inverval');
+            this.setState({
+                markerData: Reports.find({}).fetch()
+            });
+        }, 3000);
         this.setState({
+            // markerData: Reports.find({}).fetch(),
             //markerData: [],
             zoom: 18
         });
@@ -38,6 +46,7 @@ export default class SicknessMap extends Component {
     render() {
         const position = [this.state.current_location.lat, this.state.current_location.lng];
         var temp = [];
+      
         if(this.state.markerData || this.state.defaultMarkerData){
           var data = [];
           if(this.state.markerData){

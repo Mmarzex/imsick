@@ -69,6 +69,7 @@ export default class Messenger extends Component {
     }
 
     render() {
+        console.log('reports', Reports.find({}).fetch());
         console.log(Geolocation.currentLocation());
         var options = this.state.responses === undefined ? [(<div></div>)] : this.state.responses.map((r, i) => {
             return (
