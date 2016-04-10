@@ -6,13 +6,16 @@
   },
   "dependencies": {
     "deep-equal": "^1.0.1",
+    "google-map-react": "^0.11.2",
     "invariant": "^2.2.1",
     "meteor-node-stubs": "~0.2.0",
     "query-string": "^4.1.0",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
+    "react-google-maps": "^4.9.1",
+    "react-pure-render": "^1.0.2",
     "react-router": "^2.0.1",
-    "reactionic": "^0.1.12",
+    "reactionic": "^0.1.14",
     "warning": "^2.1.0"
   }
 }
